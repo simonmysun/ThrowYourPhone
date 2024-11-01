@@ -24,7 +24,7 @@ const handleDeviceMotion = (e) => {
   const xg = e.accelerationIncludingGravity.x;
   if (xg === null) {
     alert('Device not supported: no acceleration sensor found');
-    $comment.innerHTML = 'Device not supported: no acceleration sensor found';
+    $comment.innerHTML = '<b>Device not supported: no acceleration sensor found</b>';
     window.ondevicemotion = null;
     return;
   }
