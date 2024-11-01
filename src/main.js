@@ -45,28 +45,24 @@ const handleDeviceMotion = (e) => {
     document.body.className = 'animated';
   } else {
     if (throwing) {
-      if (lastThrowTime > bestThrowTime) {
-        bestThrowTime = lastThrowTime;
-        const newRecord = (bestThrowTime * bestThrowTime * 0.0000098 * 0.125).toFixed(2);
-        document.title = `New Record: ${newRecord}m`;
-        $bestThrow.innerHTML = newRecord;
-        $comment.innerHTML = `${newRecord}m (<b>New Record</b>)<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
-      } else {
-        const newRecord = (bestThrowTime * bestThrowTime * 0.0000098 * 0.125).toFixed(2);
-        $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
-
+      if (lastThrowTime !== 0) {
+        $lastThrow.innerHTML = (lastThrowTime * lastThrowTime * 0.0000098 * 0.125).toFixed(2);
+        const newRecord = (lastThrowTime * lastThrowTime * 0.0000098 * 0.125).toFixed(2);
+        if (lastThrowTime > bestThrowTime) {
+          bestThrowTime = lastThrowTime;
+          document.title = `New Record: ${newRecord}m`;
+          $bestThrow.innerHTML = newRecord;
+          $comment.innerHTML = `${newRecord}m (<b>New Record</b>)<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
+        } else {
+          $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
+        }
       }
     }
     lastThrowTime = 0;
     throwing = false;
     document.body.className = '';
   }
-
-  if (lastThrowTime !== 0) {
-    $lastThrow.innerHTML = (lastThrowTime * lastThrowTime * 0.0000098 * 0.125).toFixed(2);
-  }
-
-  log(pastTicksAvg.data.toFixed(1));
+  log(`g=${pastTicksAvg.data.toFixed(1)}, throwing=${throwing}, a=${a.toFixed(1)}, lastThrowTime=${lastThrowTime.toFixed(1)}, interval=${interval}`);
 };
 
 if (window.DeviceMotionEvent) {
