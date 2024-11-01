@@ -51,7 +51,7 @@ const handleDeviceMotion = (e) => {
     const newRecord = (bestThrowTime * bestThrowTime * 0.0000098 * 0.125).toFixed(2);
     document.title = `New Record: ${newRecord}m`;
     $bestThrow.innerHTML = newRecord;
-    $comment.innerHTML = getComment(newRecord);
+    $comment.innerHTML += `${getComment(newRecord)}<br>`;
   }
 
   if (lastThrowTime !== 0) {
