@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../src/styles.css"],
-  "sourcesContent": ["html, body {\n  margin: 0;\n  padding: 0;\n  height: 100%;\n}\n\n.animated {\n  animation: colorful 1s ease infinite;\n}\n\n@keyframes colorful { \n  0% {\n    background-color: rgb(255, 128, 128);\n  }\n  25% {\n    background-color: rgb(128, 128, 255);\n  }\n  75% {\n    background-color: rgb(128, 255, 128);\n  }\n  100% {\n    background-color: rgb(255, 128, 128);\n  }\n}\n\n"],
-  "mappings": "AAAA,KAAM,KAAN,OACU,EADV,QAEW,EACT,OAAQ,IACV,CAEA,CAAC,SACC,UAAW,SAAS,GAAG,KAAK,QAC9B,CAEA,WAHa,SAIX,GACE,iBAAkB,OACpB,CACA,IACE,iBAAkB,OACpB,CACA,IACE,iBAAkB,OACpB,CACA,GACE,iBAAkB,OACpB,CACF",
+  "sourcesContent": ["html,\nbody {\n  margin: 0;\n  padding: 0;\n  height: 100%;\n}\n\n.animated {\n  animation: colorful 1s ease infinite;\n}\n\n@keyframes colorful {\n  0% {\n    background-color: rgb(255, 128, 128);\n  }\n\n  25% {\n    background-color: rgb(128, 128, 255);\n  }\n\n  75% {\n    background-color: rgb(128, 255, 128);\n  }\n\n  100% {\n    background-color: rgb(255, 128, 128);\n  }\n}\n\n#comment {\n  max-height: 10lh;\n  overflow: auto;\n}"],
+  "mappings": "AAAA,KACA,KADA,OAEU,EAFV,QAGW,EACT,OAAQ,IACV,CAEA,CAAC,SACC,UAAW,SAAS,GAAG,KAAK,QAC9B,CAEA,WAHa,SAIX,GACE,iBAAkB,OACpB,CAEA,IACE,iBAAkB,OACpB,CAEA,IACE,iBAAkB,OACpB,CAEA,GACE,iBAAkB,OACpB,CACF,CAEA,CAAC,QACC,WAAY,KACZ,SAAU,IACZ",
   "names": []
 }

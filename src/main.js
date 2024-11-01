@@ -23,7 +23,10 @@ const windowSize = 2;
 const handleDeviceMotion = (e) => {
   const xg = e.accelerationIncludingGravity.x;
   if (xg === null) {
-    alert('device not supported'); // eslint-disable-line no-alert
+    alert('Device not supported: no acceleration sensor found');
+    $comment.innerHTML = 'Device not supported: no acceleration sensor found';
+    window.ondevicemotion = null;
+    return;
   }
   const yg = e.accelerationIncludingGravity.y;
   const zg = e.accelerationIncludingGravity.z;

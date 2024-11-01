@@ -1,2 +1,2 @@
-html,body{margin:0;padding:0;height:100%}.animated{animation:colorful 1s ease infinite}@keyframes colorful{0%{background-color:#ff8080}25%{background-color:#8080ff}75%{background-color:#80ff80}to{background-color:#ff8080}}
+html,body{margin:0;padding:0;height:100%}.animated{animation:colorful 1s ease infinite}@keyframes colorful{0%{background-color:#ff8080}25%{background-color:#8080ff}75%{background-color:#80ff80}to{background-color:#ff8080}}#comment{max-height:10lh;overflow:auto}
 /*# sourceMappingURL=main.css.map */
