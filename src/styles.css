@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -8,18 +9,25 @@ html, body {
   animation: colorful 1s ease infinite;
 }
 
-@keyframes colorful { 
+@keyframes colorful {
   0% {
     background-color: rgb(255, 128, 128);
   }
+
   25% {
     background-color: rgb(128, 128, 255);
   }
+
   75% {
     background-color: rgb(128, 255, 128);
   }
+
   100% {
     background-color: rgb(255, 128, 128);
   }
 }
 
+#comment {
+  max-height: 10lh;
+  overflow: auto;
+}
