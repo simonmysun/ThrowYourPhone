@@ -44,16 +44,18 @@ const handleDeviceMotion = (e) => {
     throwing = true;
     document.body.className = 'animated';
   } else {
-    if (lastThrowTime > bestThrowTime) {
-      bestThrowTime = lastThrowTime;
-      const newRecord = (bestThrowTime * bestThrowTime * 0.0000098 * 0.125).toFixed(2);
-      document.title = `New Record: ${newRecord}m`;
-      $bestThrow.innerHTML = newRecord;
-      $comment.innerHTML = `${newRecord}m (<b>New Record</b>)<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
-    } else {
-      const newRecord = (bestThrowTime * bestThrowTime * 0.0000098 * 0.125).toFixed(2);
-      $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
+    if (throwing) {
+      if (lastThrowTime > bestThrowTime) {
+        bestThrowTime = lastThrowTime;
+        const newRecord = (bestThrowTime * bestThrowTime * 0.0000098 * 0.125).toFixed(2);
+        document.title = `New Record: ${newRecord}m`;
+        $bestThrow.innerHTML = newRecord;
+        $comment.innerHTML = `${newRecord}m (<b>New Record</b>)<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
+      } else {
+        const newRecord = (bestThrowTime * bestThrowTime * 0.0000098 * 0.125).toFixed(2);
+        $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
 
+      }
     }
     lastThrowTime = 0;
     throwing = false;
