@@ -41,13 +41,13 @@ const handleDeviceMotion = (e) => {
     }
   } else {
     if (throwing) {
-      interval = (performance.now() - lastThrowTime) / 1000000;
+      interval = (performance.now() - lastThrowTime) / 1000;
       const newRecord = (interval * interval * 9.8 / 8).toFixed(2);
       $lastThrow.innerHTML = newRecord;
       if (interval > bestThrowTime) {
         bestThrowTime = interval;
         document.title = `New Record: ${newRecord}m`;
-        $bestThrow.innerHTML = newRecord / 1000000;
+        $bestThrow.innerHTML = newRecord / 1000;
         $comment.innerHTML = `${newRecord}m (<b>New Record</b>)<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
       } else {
         $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>lastThrowTime=${interval}<br>` + $comment.innerHTML;
