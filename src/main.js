@@ -28,35 +28,30 @@ const handleDeviceMotion = (e) => {
   }
   const yg = e.accelerationIncludingGravity.y;
   const zg = e.accelerationIncludingGravity.z;
-  const interval = e.interval > 1 ? e.interval / 1000 : e.interval;
 
   const a = Math.sqrt((xg * xg) + (yg * yg) + (zg * zg));
   pastTicksData.push(a);
   pastTicksAvg += (a - pastTicksData.shift(1)) / windowSize;
 
-  if (throwing && pastTicksAvg < 3) {
-    lastThrowTime += interval;
-  }
   if (pastTicksAvg < 3) {
     if (!throwing) {
       throwing = true;
       document.body.className = 'animated';
+      lastThrowTime = performance.now();
     }
   } else {
     if (throwing) {
-      if (lastThrowTime !== 0) {
-        const newRecord = (lastThrowTime * lastThrowTime * 9.8 / 8).toFixed(2);
-        $lastThrow.innerHTML = newRecord;
-        if (lastThrowTime > bestThrowTime) {
-          bestThrowTime = lastThrowTime;
-          document.title = `New Record: ${newRecord}m`;
-          $bestThrow.innerHTML = newRecord;
-          $comment.innerHTML = `${newRecord}m (<b>New Record</b>)<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
-        } else {
-          $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>lastThrowTime=${lastThrowTime}<br>` + $comment.innerHTML;
-        }
+      interval = (performance.now() - lastThrowTime) / 1000000;
+      const newRecord = (interval * interval * 9.8 / 8).toFixed(2);
+      $lastThrow.innerHTML = newRecord;
+      if (interval > bestThrowTime) {
+        bestThrowTime = interval;
+        document.title = `New Record: ${newRecord}m`;
+        $bestThrow.innerHTML = newRecord / 1000000;
+        $comment.innerHTML = `${newRecord}m (<b>New Record</b>)<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
+      } else {
+        $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>lastThrowTime=${interval}<br>` + $comment.innerHTML;
       }
-      lastThrowTime = 0;
       throwing = false;
       document.body.className = '';
     }
