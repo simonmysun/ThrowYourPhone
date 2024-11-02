@@ -38,8 +38,10 @@ const handleDeviceMotion = (e) => {
     lastThrowTime += interval;
   }
   if (pastTicksAvg < 3) {
-    throwing = true;
-    document.body.className = 'animated';
+    if (!throwing) {
+      throwing = true;
+      document.body.className = 'animated';
+    }
   } else {
     if (throwing) {
       if (lastThrowTime !== 0) {
@@ -54,10 +56,10 @@ const handleDeviceMotion = (e) => {
           $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
         }
       }
+      lastThrowTime = 0;
+      throwing = false;
+      document.body.className = '';
     }
-    lastThrowTime = 0;
-    throwing = false;
-    document.body.className = '';
   }
   log(`g=${pastTicksAvg.toFixed(1)}, throwing=${throwing}, a=${a.toFixed(1)}, lastThrowTime=${lastThrowTime.toFixed(1)}, interval=${interval}`);
 };
