@@ -75,6 +75,10 @@ const comments = [
     v: 20,
     c: 'You have transcended phone throwing. You are now a legend!',
   },
+  {
+    v: 100,
+    c: 'I think you should register in the Olympics!',
+  }
 ];
 
 const getComment = height => comments[bSearch(0, comments.length - 1, height, comments)].c;
