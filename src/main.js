@@ -8,7 +8,7 @@ const log = (message) => {
 };
 
 const pastTicksData = [10, 10];
-const pastTicksAvg = 10;
+let pastTicksAvg = 10;
 
 const $lastThrow = document.getElementById('lastThrow');
 const $bestThrow = document.getElementById('bestThrow');
