@@ -8,9 +8,7 @@ const log = (message) => {
 };
 
 const pastTicksData = [10, 10];
-const pastTicksAvg = {
-  data: 10,
-};
+const pastTicksAvg = 10;
 
 const $lastThrow = document.getElementById('lastThrow');
 const $bestThrow = document.getElementById('bestThrow');
@@ -34,13 +32,12 @@ const handleDeviceMotion = (e) => {
 
   const a = Math.sqrt((xg * xg) + (yg * yg) + (zg * zg));
   pastTicksData.push(a);
-  pastTicksAvg.data += a / windowSize;
-  pastTicksAvg.data -= pastTicksData.shift(1) / windowSize;
+  pastTicksAvg += (a - pastTicksData.shift(1)) / windowSize;
 
-  if (throwing && pastTicksAvg.data < 3) {
+  if (throwing && pastTicksAvg < 3) {
     lastThrowTime += interval;
   }
-  if (pastTicksAvg.data < 3) {
+  if (pastTicksAvg < 3) {
     throwing = true;
     document.body.className = 'animated';
   } else {
@@ -62,7 +59,7 @@ const handleDeviceMotion = (e) => {
     throwing = false;
     document.body.className = '';
   }
-  log(`g=${pastTicksAvg.data.toFixed(1)}, throwing=${throwing}, a=${a.toFixed(1)}, lastThrowTime=${lastThrowTime.toFixed(1)}, interval=${interval}`);
+  log(`g=${pastTicksAvg.toFixed(1)}, throwing=${throwing}, a=${a.toFixed(1)}, lastThrowTime=${lastThrowTime.toFixed(1)}, interval=${interval}`);
 };
 
 if (window.DeviceMotionEvent) {
