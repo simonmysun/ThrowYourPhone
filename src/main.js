@@ -6,17 +6,19 @@ const dataDiv = document.getElementById('data');
 const log = (message) => {
   dataDiv.innerHTML = message;
 };
+log(`g=0m/s^2`);
 
-const pastTicksData = [10, 10];
-let pastTicksAvg = 10;
+const pastTicksData = [9.8, 9.8];
+let pastTicksAvg = 9.8;
 
 const $lastThrow = document.getElementById('lastThrow');
 const $bestThrow = document.getElementById('bestThrow');
 const $comment = document.getElementById('comment');
+const $requestPermission = document.getElementById('request-permission');
 let throwing = false;
 let lastThrowTime = 0;
 let bestThrowTime = 0;
-const windowSize = 2;
+const windowSize = 2; // increase to smooth out the data and reduce sensitivity
 
 const handleDeviceMotion = (e) => {
   const xg = e.accelerationIncludingGravity.x;
@@ -59,7 +61,20 @@ const handleDeviceMotion = (e) => {
   log(`g=${pastTicksAvg.toFixed(1)}m/s^2`);
 };
 
-log(`g=${pastTicksAvg.toFixed(1)}m/s^2`);
+if (DeviceOrientationEvent && typeof (DeviceOrientationEvent.requestPermission) === "function") {
+  $requestPermission.onclick = async () => {
+    const permissionState = await DeviceOrientationEvent.requestPermission();
+    if (permissionState === "granted") {
+      $requestPermission.style.display = 'none';
+    } else {
+      alert('Permission denied. Please quit and restart your browser to see the prompt again.');
+      $comment.innerHTML = '<b>Permission denied. Please quit and restart your browser to see the prompt again.</b>';
+    }
+  }
+} else {
+  $requestPermission.style.display = 'none';
+}
+
 if (window.DeviceMotionEvent) {
   window.ondevicemotion = handleDeviceMotion;
 } else {
