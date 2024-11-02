@@ -30,7 +30,7 @@ const handleDeviceMotion = (e) => {
   }
   const yg = e.accelerationIncludingGravity.y;
   const zg = e.accelerationIncludingGravity.z;
-  const interval = e.interval > 1 ? e.interval : e.interval * 1000;
+  const interval = e.interval > 1 ? e.interval / 1000 : e.interval;
 
   const a = Math.sqrt((xg * xg) + (yg * yg) + (zg * zg));
   pastTicksData.push(a);
@@ -46,8 +46,8 @@ const handleDeviceMotion = (e) => {
   } else {
     if (throwing) {
       if (lastThrowTime !== 0) {
-        $lastThrow.innerHTML = (lastThrowTime * lastThrowTime * 0.0000098 * 0.125).toFixed(2);
-        const newRecord = (lastThrowTime * lastThrowTime * 0.0000098 * 0.125).toFixed(2);
+        const newRecord = (lastThrowTime * lastThrowTime * 9.8 / 8).toFixed(2);
+        $lastThrow.innerHTML = newRecord;
         if (lastThrowTime > bestThrowTime) {
           bestThrowTime = lastThrowTime;
           document.title = `New Record: ${newRecord}m`;
