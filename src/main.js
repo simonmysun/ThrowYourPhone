@@ -47,7 +47,7 @@ const handleDeviceMotion = (e) => {
       if (interval > bestThrowTime) {
         bestThrowTime = interval;
         document.title = `New Record: ${newRecord}m`;
-        $bestThrow.innerHTML = newRecord / 1000;
+        $bestThrow.innerHTML = newRecord;
         $comment.innerHTML = `${newRecord}m (<b>New Record</b>)<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
       } else {
         $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>lastThrowTime=${interval}<br>` + $comment.innerHTML;
@@ -56,11 +56,14 @@ const handleDeviceMotion = (e) => {
       document.body.className = '';
     }
   }
-  log(`g=${pastTicksAvg.toFixed(1)}, throwing=${throwing}, a=${a.toFixed(1)}, lastThrowTime=${lastThrowTime.toFixed(1)}, interval=${interval}`);
+  log(`g=${pastTicksAvg.toFixed(1)}m/s^2`);
 };
 
+log(`g=${pastTicksAvg.toFixed(1)}m/s^2`);
 if (window.DeviceMotionEvent) {
   window.ondevicemotion = handleDeviceMotion;
 } else {
-  log('Device Motion not supported.');
+  alert('Device not supported: no acceleration sensor found');
+  $comment.innerHTML = '<b>Device not supported: no acceleration sensor found</b>';
+  window.ondevicemotion = null;
 }
