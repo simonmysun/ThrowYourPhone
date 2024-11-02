@@ -53,7 +53,7 @@ const handleDeviceMotion = (e) => {
           $bestThrow.innerHTML = newRecord;
           $comment.innerHTML = `${newRecord}m (<b>New Record</b>)<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
         } else {
-          $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>` + $comment.innerHTML;
+          $comment.innerHTML = `${newRecord}m<br>${getComment(newRecord)}<br>lastThrowTime=${lastThrowTime}<br>` + $comment.innerHTML;
         }
       }
       lastThrowTime = 0;
