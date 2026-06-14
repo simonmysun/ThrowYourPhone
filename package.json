@@ -10,6 +10,6 @@
   "author": "MY Sun <simonmysun@gmail.com> (https://simonmysun.github.io/)",
   "license": "MIT",
   "devDependencies": {
-    "esbuild": "0.25.0"
+    "esbuild": "0.28.1"
   }
 }
